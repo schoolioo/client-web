@@ -24,7 +24,7 @@ const Template: Story<CourseProps> = (args) => (
       Une équation du second degré est une équation de la forme :
       <MathBlock latex="ax^2 + bx + c = 0"/>
       où <MathBlock latex="a" inline/> est un nombre entier, <MathBlock latex="b" inline/> est un nombre reel et <MathBlock latex="c" inline/> est un nombre reel.
-      <CourseBlock type={CourseBlockType.Example}>
+      <CourseBlock type={CourseBlockType.Example} expandable>
         L'équation <MathBlock latex="x^2 - 2x + 1 = 0" inline/> est un exemple de l'équation du second degré.
       </CourseBlock>
     </CourseBlock>
@@ -32,7 +32,7 @@ const Template: Story<CourseProps> = (args) => (
       On appelle discriminant du trinôme de l'équation du second degré noté <MathBlock inline latex="\Delta"/> :
       <MathBlock latex="\Delta = b^2 - 4ac"/>
 
-      <CourseBlock type={CourseBlockType.Example}>
+      <CourseBlock type={CourseBlockType.Example} expandable>
         Le discrimant de l'équation <MathBlock inline latex="3x^{2}-6x-2=0"/> est <MathBlock inline latex="\Delta =\left( -6\right) ^{2}-4\times 3\times \left( -2\right) =36+24=60"/>.
       </CourseBlock>
     </CourseBlock>

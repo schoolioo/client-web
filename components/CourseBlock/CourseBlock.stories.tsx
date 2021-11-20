@@ -53,3 +53,10 @@ Nested.args = {
     <CourseBlock type={ CourseBlockType.Example }>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</CourseBlock>
   </div>,
 };
+
+export const Expandable = Template.bind({});
+Expandable.args = {
+  type: CourseBlockType.Example,
+  children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  expandable: true,
+};
