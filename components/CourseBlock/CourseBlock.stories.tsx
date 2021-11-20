@@ -8,7 +8,7 @@ import { Inline } from "../MathBlock/MathBlock.stories";
 
 export default {
   component: CourseBlock,
-  title: 'Components/CourseBlock',
+  title: 'Components/Course/CourseBlock',
   subcomponents: {
     MathBlock
   },
