@@ -8,7 +8,7 @@ export type MathBlockProps = {
   align?: "left" | "center" | "right",
 };
 
-const MathBlock: FunctionComponent<MathBlockProps> = ({ latex = "", inline = true, align = "center" }) => {
+const MathBlock: FunctionComponent<MathBlockProps> = ({ latex = "", inline = false, align = "center" }) => {
 
   const html = katex.renderToString(latex, { throwOnError: false });
 
