@@ -7,25 +7,25 @@ export type HeadingProps = {
 };
 
 const Heading: FunctionComponent<HeadingProps> = ({ children, prefix, level = 1 }) => {
-
+  const classNames = "my-3 font-bold text-primary flex items-center"
   switch (level) {
     case 2:
-      return <h2 className="my-3 font-body font-bold text-primary text-2xl flex items-center">
+      return <h2 className={ `text-2xl ${classNames}` }>
         { (prefix?.length ?? 0) > 0 && <HeadingPrefix level={level} prefix={ prefix }/> }
         { children }
       </h2>;
     case 3:
-      return <h3 className="my-3 font-body font-bold text-primary text-xl flex items-center">
+      return <h3 className={ `text-xl ${classNames}` }>
         { (prefix?.length ?? 0) > 0 && <HeadingPrefix level={level} prefix={ prefix }/> }
         { children }
       </h3>;
     case 4:
-      return <h4 className="my-3 font-body font-bold text-primary text-lg flex items-center">
+      return <h4 className={ `text-lg ${classNames}` }>
         { (prefix?.length ?? 0) > 0 && <HeadingPrefix level={level} prefix={ prefix }/> }
         { children }
       </h4>;
     default:
-      return <h1 className="my-3 font-body font-bold text-primary text-3xl flex items-center">
+      return <h1 className={ `text-3xl ${classNames}` }>
         { (prefix?.length ?? 0) > 0 && <HeadingPrefix level={level} prefix={ prefix }/> }
         { children }
       </h1>;
