@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+h1, h2, h3, h4, div {
+    @apply font-body
+}
+
 @font-face {
     font-family: 'M PLUS Rounded 1c';
     font-style: normal;
