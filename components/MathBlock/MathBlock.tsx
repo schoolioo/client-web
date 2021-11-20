@@ -1,15 +1,18 @@
-import React, { FunctionComponent } from 'react';
-import katex from 'katex';
+import React, { FunctionComponent } from "react";
+import katex from "katex";
 import "katex/dist/katex.css";
 
 export type MathBlockProps = {
-  latex: string,
-  inline?: boolean,
-  align?: "left" | "center" | "right",
+  latex: string;
+  inline?: boolean;
+  align?: "left" | "center" | "right";
 };
 
-const MathBlock: FunctionComponent<MathBlockProps> = ({ latex = "", inline = false, align = "center" }) => {
-
+const MathBlock: FunctionComponent<MathBlockProps> = ({
+  latex = "",
+  inline = false,
+  align = "center",
+}) => {
   const html = katex.renderToString(latex, { throwOnError: false });
 
   const getAlignment = () => {
@@ -23,10 +26,13 @@ const MathBlock: FunctionComponent<MathBlockProps> = ({ latex = "", inline = fal
       default:
         return "text-center";
     }
-  }
+  };
 
   return (
-    <div className={ (inline ? "inline " : "") + getAlignment() } dangerouslySetInnerHTML={ { __html: html } }/>
+    <div
+      className={(inline ? "inline " : "") + getAlignment()}
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
   );
 };
 
