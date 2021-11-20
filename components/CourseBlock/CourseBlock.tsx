@@ -10,6 +10,7 @@ export enum CourseBlockType {
   Comment = "comment",
   Theorem = "theorem",
   Example = "example",
+  Definition = "definition",
 }
 
 const CourseBlock: FunctionComponent<CourseBlockProps> = ({ children, type }) => {
@@ -23,7 +24,12 @@ const CourseBlock: FunctionComponent<CourseBlockProps> = ({ children, type }) =>
       case CourseBlockType.Example:
         return {
           className: 'bg-gray-100',
-          title: <div className="text-gray-600">💪 Exemple</div>
+          title: <div className="text-gray-600">Exemple</div>
+        };
+      case CourseBlockType.Definition:
+        return {
+          className: 'bg-red-100',
+          title: <div className="text-red-600">ℹ️ Définition</div>
         };
       default:
         return {
@@ -37,7 +43,7 @@ const CourseBlock: FunctionComponent<CourseBlockProps> = ({ children, type }) =>
   return (
     <div className={ `rounded-xl p-5 font-body space-y-2 ${ getTypeData().className }` }>
       <header className="font-bold">{ getTypeData().title }</header>
-      <main className="text-gray-700">
+      <main className="text-gray-700 space-y-4">
         { children }
       </main>
     </div>
