@@ -24,12 +24,15 @@ export default {
   },
 } as Meta<CourseBlockProps>;
 
-const Template: Story<CourseBlockProps> = (args) => <CourseBlock {...args} />;
+const Template: Story<CourseBlockProps> = (args) => (
+  <CourseBlock {...args}>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  </CourseBlock>
+);
 
 export const Primary = Template.bind({});
 Primary.args = {
   type: CourseBlockType.Theorem,
-  children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 };
 
 const TemplateWithMath: Story<CourseBlockProps & MathBlockProps> = (args) => (
@@ -44,22 +47,21 @@ WithMath.args = {
   ...Inline.args,
 };
 
-export const Nested = Template.bind({});
+const NestedTemplate: Story<CourseBlockProps> = (args) => (
+  <CourseBlock {...args}>
+    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+    <CourseBlock type={CourseBlockType.Example}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </CourseBlock>
+  </CourseBlock>
+);
+export const Nested = NestedTemplate.bind({});
 Nested.args = {
   type: CourseBlockType.Theorem,
-  children: (
-    <div>
-      <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-      <CourseBlock type={CourseBlockType.Example}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </CourseBlock>
-    </div>
-  ),
 };
 
 export const Expandable = Template.bind({});
 Expandable.args = {
   type: CourseBlockType.Example,
-  children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   expandable: true,
 };
