@@ -85,20 +85,23 @@ const CourseBlock: FunctionComponent<CourseBlockProps> = ({
 
   return (
     <div
-      className={`rounded-xl p-5 font-body space-y-2 ${
+      className={`rounded-xl overflow-hidden font-body space-y-2 ${
         getTypeData().className
       }`}
     >
-      <header className="font-bold flex justify-between">
+      <header
+        onClick={() => setExpand(!expand)}
+        className={`rounded-xl font-bold flex justify-between p-5 ${
+          expandable
+            ? "cursor-pointer hover:bg-black hover:bg-opacity-5 transition-colors ease-in-out"
+            : ""
+        }`}
+      >
         {getTypeData().title}
-        {expandable && (
-          <button onClick={() => setExpand(!expand)}>
-            <ExpandIcon expanded={expand} />
-          </button>
-        )}
+        {expandable && <ExpandIcon expanded={expand} />}
       </header>
       <main
-        className={`text-gray-700 space-y-4 ${
+        className={`text-gray-700 space-y-4 px-5 pb-5 ${
           !expandable || expand ? "" : "hidden"
         }`}
       >
