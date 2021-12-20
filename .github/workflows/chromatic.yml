@@ -6,7 +6,7 @@ on: push
 
 # List of jobs
 jobs:
-  test:
+  deploy-to-chromatic:
     # Operating System
     runs-on: ubuntu-latest
     # Job steps
