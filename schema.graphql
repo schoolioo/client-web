@@ -1,0 +1,53 @@
+union Block = TextBlock | VideoBlock | ImageBlock | MathBlock | ExempleBlock | DefinitionBlock | SectionBlock | TheoremBlock | CommentBlock
+
+type TextBlock {
+    content: [Text!]!
+}
+type VideoBlock {
+    url: String!
+    legend: String!
+}
+type ImageBlock {
+    url: String!
+    legend: String!
+}
+type MathBlock {
+    equation: String!
+}
+type Text {
+    text: String!
+    isBold: Boolean
+    isItalic: Boolean
+    isUnderlined: Boolean
+    isStrikeTrough: Boolean
+    isMath: Boolean
+}
+
+type ExempleBlock {
+    blocks: [Block!]!
+}
+
+type DefinitionBlock {
+    blocks: [Block!]!
+}
+
+type SectionBlock {
+    title: String!
+    blocks: [Block!]!
+}
+
+type TheoremBlock {
+    blocks: [Block!]!
+}
+
+type CommentBlock {
+    blocks: [Block!]!
+}
+
+schema {
+    query: Query
+}
+
+type Query {
+    getCourse: SectionBlock
+}
