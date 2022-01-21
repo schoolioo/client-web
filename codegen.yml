@@ -1,0 +1,10 @@
+schema: schema.graphql
+documents: ./graphql/**/*.graphql
+generates:
+  url-generated-api.tsx:
+    config:
+      withHooks: true
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-urql
