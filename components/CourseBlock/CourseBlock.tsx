@@ -2,11 +2,14 @@ import React, { FunctionComponent, useState } from "react";
 import InformationIcon from "../icons/InformationIcon";
 import ThinkingIcon from "../icons/ThinkingIcon";
 import AbacusIcon from "../icons/AbacusIcon";
+import { Block } from "../../url-generated-api";
+import getBlock from "../../lib/GetBlock";
 
 export type CourseBlockProps = {
   children?: React.ReactNode;
   type?: CourseBlockType;
   expandable?: boolean;
+  blocks?: Block[]
 };
 
 export enum CourseBlockType {
@@ -42,6 +45,7 @@ const CourseBlock: FunctionComponent<CourseBlockProps> = ({
   children,
   type,
   expandable = false,
+  blocks
 }) => {
   const getTypeData = () => {
     switch (type) {
@@ -85,7 +89,7 @@ const CourseBlock: FunctionComponent<CourseBlockProps> = ({
 
   return (
     <div
-      className={`rounded-xl overflow-hidden font-body space-y-2 ${
+      className={`rounded-xl overflow-hidden font-body space-y-2 select-none ${
         getTypeData().className
       }`}
     >
@@ -106,6 +110,7 @@ const CourseBlock: FunctionComponent<CourseBlockProps> = ({
         }`}
       >
         {children}
+        {blocks?.map(block => getBlock(block))}
       </main>
     </div>
   );
