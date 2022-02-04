@@ -1,46 +1,47 @@
 union Block = TextBlock | VideoBlock | ImageBlock | MathBlock | ExempleBlock | DefinitionBlock | SectionBlock | TheoremBlock | CommentBlock
 
 type TextBlock {
-    content: [Text!]!
+    id: String!
+    content: String!
 }
 type VideoBlock {
+    id: String!
     url: String!
     legend: String!
 }
 type ImageBlock {
+    id: String!
     url: String!
     legend: String!
 }
 type MathBlock {
+    id: String!
     equation: String!
-}
-type Text {
-    text: String!
-    isBold: Boolean
-    isItalic: Boolean
-    isUnderlined: Boolean
-    isStrikeTrough: Boolean
-    isMath: Boolean
 }
 
 type ExempleBlock {
+    id: String!
     blocks: [Block!]!
 }
 
 type DefinitionBlock {
+    id: String!
     blocks: [Block!]!
 }
 
 type SectionBlock {
+    id: String!
     title: String!
     blocks: [Block!]!
 }
 
 type TheoremBlock {
+    id: String!
     blocks: [Block!]!
 }
 
 type CommentBlock {
+    id: String!
     blocks: [Block!]!
 }
 
