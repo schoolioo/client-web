@@ -20,20 +20,24 @@ export type Block = CommentBlock | DefinitionBlock | ExempleBlock | ImageBlock |
 export type CommentBlock = {
   __typename?: 'CommentBlock';
   blocks: Array<Block>;
+  id: Scalars['String'];
 };
 
 export type DefinitionBlock = {
   __typename?: 'DefinitionBlock';
   blocks: Array<Block>;
+  id: Scalars['String'];
 };
 
 export type ExempleBlock = {
   __typename?: 'ExempleBlock';
   blocks: Array<Block>;
+  id: Scalars['String'];
 };
 
 export type ImageBlock = {
   __typename?: 'ImageBlock';
+  id: Scalars['String'];
   legend: Scalars['String'];
   url: Scalars['String'];
 };
@@ -41,6 +45,7 @@ export type ImageBlock = {
 export type MathBlock = {
   __typename?: 'MathBlock';
   equation: Scalars['String'];
+  id: Scalars['String'];
 };
 
 export type Query = {
@@ -51,31 +56,25 @@ export type Query = {
 export type SectionBlock = {
   __typename?: 'SectionBlock';
   blocks: Array<Block>;
+  id: Scalars['String'];
   title: Scalars['String'];
-};
-
-export type Text = {
-  __typename?: 'Text';
-  isBold?: Maybe<Scalars['Boolean']>;
-  isItalic?: Maybe<Scalars['Boolean']>;
-  isMath?: Maybe<Scalars['Boolean']>;
-  isStrikeTrough?: Maybe<Scalars['Boolean']>;
-  isUnderlined?: Maybe<Scalars['Boolean']>;
-  text: Scalars['String'];
 };
 
 export type TextBlock = {
   __typename?: 'TextBlock';
-  content: Array<Text>;
+  content: Scalars['String'];
+  id: Scalars['String'];
 };
 
 export type TheoremBlock = {
   __typename?: 'TheoremBlock';
   blocks: Array<Block>;
+  id: Scalars['String'];
 };
 
 export type VideoBlock = {
   __typename?: 'VideoBlock';
+  id: Scalars['String'];
   legend: Scalars['String'];
   url: Scalars['String'];
 };
