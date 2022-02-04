@@ -3,7 +3,7 @@ import React, { FunctionComponent } from "react";
 export type HeadingProps = {
   children?: React.ReactNode;
   prefix?: string;
-  level?: 1 | 2 | 3 | 4;
+  level?: number;
 };
 
 const Heading: FunctionComponent<HeadingProps> = ({
@@ -54,7 +54,7 @@ const Heading: FunctionComponent<HeadingProps> = ({
 
 type HeadingPrefixProps = {
   prefix?: string;
-  level?: 1 | 2 | 3 | 4;
+  level?: number;
 };
 
 const HeadingPrefix: FunctionComponent<HeadingPrefixProps> = ({

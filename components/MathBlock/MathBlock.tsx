@@ -37,3 +37,14 @@ const MathBlock: FunctionComponent<MathBlockProps> = ({
 };
 
 export default MathBlock;
+
+
+export type InlineMathBlockProps = {
+  children: string
+};
+export const InlineMathBlock: FunctionComponent<InlineMathBlockProps> = ({children}) => {
+  return (
+    <MathBlock inline latex={children}/>
+  );
+};
+
