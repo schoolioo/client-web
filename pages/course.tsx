@@ -11,7 +11,7 @@ const Course: NextPage = () => {
           __typename: "ExempleBlock", blocks: [
             {
               __typename: "TextBlock",
-              content: "**awd** **awed** *wef* s*wef $$\\int$$" ,
+              content: "*Romain* a cassé **sa voiture** $$x^2$$" ,
               id: "246878d2-93a0-4311-9412-445b44983dd9"
             }
           ],

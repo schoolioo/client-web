@@ -94,7 +94,7 @@ const CourseBlock: FunctionComponent<CourseBlockProps> = ({
 
   return (
     <div
-      className={ `rounded-xl overflow-hidden font-body space-y-2 select-none ${
+      className={ `rounded-xl font-body space-y-2 select-none ${
         getTypeData().className
       }` }
     >

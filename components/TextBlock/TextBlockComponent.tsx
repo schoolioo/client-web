@@ -1,10 +1,12 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FunctionComponent, ReactNode, useRef, useState } from "react";
 import { TextBlock } from "../../url-generated-api";
 import { InlineMathBlock } from "../MathBlock/MathBlock";
 
 export type TextBlockComponentProps = {
   content: TextBlock["content"];
   editable?: boolean;
+  update: () => void;
+  parent: TextBlock
 };
 
 export const SpanBold: FunctionComponent = ({ children }) => {
@@ -18,7 +20,11 @@ export const SpanItalic: FunctionComponent = ({ children }) => {
 export const TextBlockComponent: FunctionComponent<TextBlockComponentProps> = ({
   content,
   editable = false,
+  update,
+  parent
 }) => {
+  const [isCurrentlyEdited, setIsCurrentlyEdited] = useState(false);
+
   function markdownIFy(text: string): ReactNode {
     // replace **text** with <span>text<span/> and place it into a ReactNode
 
@@ -51,13 +57,24 @@ export const TextBlockComponent: FunctionComponent<TextBlockComponentProps> = ({
     return result;
   }
 
+  const refContainer = useRef<HTMLDivElement>(null);
+
   return (
     <div
       className={" whitespace-pre-wrap select-text min-h-[1.5em]"}
       contentEditable={editable}
       placeholder="Tapez"
+      onBlur={() => {
+        parent.content = refContainer.current?.textContent ?? ""
+        console.log(refContainer.current?.textContent);
+        update();
+        setIsCurrentlyEdited(false);
+
+      }}
+      ref={refContainer}
+      onFocus={() => setIsCurrentlyEdited(true)}
     >
-      {markdownIFy(content)}
+      {editable && isCurrentlyEdited ? content : markdownIFy(content)}
     </div>
   );
 };
