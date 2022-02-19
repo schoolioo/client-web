@@ -65,14 +65,14 @@ export const BlockComponent: FunctionComponent<BlockComponentProps> = ({
     switch (elementType) {
       case "ExempleBlock":
         newBlock = {
-          id: Symbol().toString(),
+          id: Math.random().toFixed(10),
           blocks: [],
           __typename: "ExempleBlock",
         };
         break;
       case "SectionBlock":
         newBlock = {
-          id: Symbol().toString(),
+          id: Math.random().toFixed(10),
           blocks: [],
           title: "Nouveau titre",
           __typename: "SectionBlock",
@@ -80,35 +80,35 @@ export const BlockComponent: FunctionComponent<BlockComponentProps> = ({
         break;
       case "TextBlock":
         newBlock = {
-          id: Symbol().toString(),
+          id: Math.random().toFixed(10),
           content: "😁 Votre texte ici...",
           __typename: "TextBlock",
         };
         break;
       case "TheoremBlock":
         newBlock = {
-          id: Symbol().toString(),
+          id: Math.random().toFixed(10),
           blocks: [],
           __typename: "TheoremBlock",
         };
         break;
       case "DefinitionBlock":
         newBlock = {
-          id: Symbol().toString(),
+          id: Math.random().toFixed(10),
           blocks: [],
           __typename: "DefinitionBlock",
         };
         break;
       case "CommentBlock":
         newBlock = {
-          id: Symbol().toString(),
+          id: Math.random().toFixed(10),
           blocks: [],
           __typename: "CommentBlock",
         };
         break;
       default:
         newBlock = {
-          id: Symbol().toString(),
+          id: Math.random().toFixed(10),
           blocks: [],
           __typename: "ExempleBlock",
         };
@@ -128,7 +128,7 @@ export const BlockComponent: FunctionComponent<BlockComponentProps> = ({
         />
         {"blocks" in block &&
           block?.blocks?.map((value, index) => (
-            <div className="flex flex-col">
+            <div className="flex flex-col" key={value.id}>
               <BlockComponent
                 level={level + 1}
                 key={value.id}
