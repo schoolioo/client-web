@@ -1,20 +1,15 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 
-export type HeadingProps = {
-  children?: React.ReactNode;
-  prefix?: string;
-  level?: number;
-  editable?: boolean;
-};
-
-const HeadingText: FunctionComponent<{ editable: boolean; text: string }> = ({
-  editable,
-  text,
-}) => {
+const HeadingText: FunctionComponent<{
+  editable: boolean;
+  text: string;
+  setTitleData: (title: string) => void;
+}> = ({ editable, text, setTitleData }) => {
   return editable ? (
     <input
       value={text}
-      className="font-bold w-full outline-0 focus:border-b-2  border-primary "
+      onChange={(event) => setTitleData(event.target.value)}
+      className="font-bold w-full outline-0 focus:border-b-2  border-primary bg-transparent"
       type="text"
     />
   ) : (
@@ -22,12 +17,20 @@ const HeadingText: FunctionComponent<{ editable: boolean; text: string }> = ({
   );
 };
 
+export type HeadingProps = {
+  prefix?: string;
+  level?: number;
+  editable?: boolean;
+  title: string;
+};
 const Heading: FunctionComponent<HeadingProps> = ({
-  children,
   prefix,
   level = 1,
   editable = true,
+  title = "",
 }) => {
+  const [titleData, setTitleData] = useState(title);
+
   const classNames = "my-3 font-bold text-primary flex items-center";
   switch (level) {
     case 2:
@@ -36,7 +39,11 @@ const Heading: FunctionComponent<HeadingProps> = ({
           {(prefix?.length ?? 0) > 0 && (
             <HeadingPrefix level={level} prefix={prefix} />
           )}
-          <HeadingText text={children as string} editable={editable} />
+          <HeadingText
+            setTitleData={setTitleData}
+            text={titleData}
+            editable={editable}
+          />
         </h2>
       );
     case 3:
@@ -45,7 +52,11 @@ const Heading: FunctionComponent<HeadingProps> = ({
           {(prefix?.length ?? 0) > 0 && (
             <HeadingPrefix level={level} prefix={prefix} />
           )}
-          <HeadingText text={children as string} editable={editable} />
+          <HeadingText
+            setTitleData={setTitleData}
+            text={titleData}
+            editable={editable}
+          />
         </h3>
       );
     case 4:
@@ -54,7 +65,11 @@ const Heading: FunctionComponent<HeadingProps> = ({
           {(prefix?.length ?? 0) > 0 && (
             <HeadingPrefix level={level} prefix={prefix} />
           )}
-          <HeadingText text={children as string} editable={editable} />
+          <HeadingText
+            setTitleData={setTitleData}
+            text={titleData}
+            editable={editable}
+          />
         </h4>
       );
     default:
@@ -63,7 +78,11 @@ const Heading: FunctionComponent<HeadingProps> = ({
           {(prefix?.length ?? 0) > 0 && (
             <HeadingPrefix level={level} prefix={prefix} />
           )}
-          <HeadingText text={children as string} editable={editable} />
+          <HeadingText
+            setTitleData={setTitleData}
+            text={titleData}
+            editable={editable}
+          />
         </h1>
       );
   }

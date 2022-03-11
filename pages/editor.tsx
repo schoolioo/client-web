@@ -13,18 +13,7 @@ const Editor: NextPage = () => {
 
   return (
     <div>
-      <BlockComponent
-        update={ () => setBlock({ ...block }) }
-        block={ block }
-        editable
-      />
-      {/*<button*/}
-      {/*  onClick={ () => {*/}
-      {/*    console.log(JSON.stringify(block));*/}
-      {/*  } }*/}
-      {/*>*/}
-      {/*  Save*/}
-      {/*</button>*/}
+      <BlockComponent block={ block }/>
     </div>
   );
 };
