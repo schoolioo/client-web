@@ -4,12 +4,29 @@ export type HeadingProps = {
   children?: React.ReactNode;
   prefix?: string;
   level?: number;
+  editable?: boolean;
+};
+
+const HeadingText: FunctionComponent<{ editable: boolean; text: string }> = ({
+  editable,
+  text,
+}) => {
+  return editable ? (
+    <input
+      value={text}
+      className="font-bold w-full outline-0 focus:border-b-2  border-primary "
+      type="text"
+    />
+  ) : (
+    <span>{text}</span>
+  );
 };
 
 const Heading: FunctionComponent<HeadingProps> = ({
   children,
   prefix,
   level = 1,
+  editable = true,
 }) => {
   const classNames = "my-3 font-bold text-primary flex items-center";
   switch (level) {
@@ -19,7 +36,7 @@ const Heading: FunctionComponent<HeadingProps> = ({
           {(prefix?.length ?? 0) > 0 && (
             <HeadingPrefix level={level} prefix={prefix} />
           )}
-          {children}
+          <HeadingText text={children as string} editable={editable} />
         </h2>
       );
     case 3:
@@ -28,7 +45,7 @@ const Heading: FunctionComponent<HeadingProps> = ({
           {(prefix?.length ?? 0) > 0 && (
             <HeadingPrefix level={level} prefix={prefix} />
           )}
-          {children}
+          <HeadingText text={children as string} editable={editable} />
         </h3>
       );
     case 4:
@@ -37,7 +54,7 @@ const Heading: FunctionComponent<HeadingProps> = ({
           {(prefix?.length ?? 0) > 0 && (
             <HeadingPrefix level={level} prefix={prefix} />
           )}
-          {children}
+          <HeadingText text={children as string} editable={editable} />
         </h4>
       );
     default:
@@ -46,7 +63,7 @@ const Heading: FunctionComponent<HeadingProps> = ({
           {(prefix?.length ?? 0) > 0 && (
             <HeadingPrefix level={level} prefix={prefix} />
           )}
-          {children}
+          <HeadingText text={children as string} editable={editable} />
         </h1>
       );
   }

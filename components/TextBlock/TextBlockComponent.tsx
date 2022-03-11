@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, useRef, useState } from "react";
+import React, { FunctionComponent, ReactNode, useEffect, useRef, useState } from "react";
 import { TextBlock } from "../../url-generated-api";
 import { InlineMathBlock } from "../MathBlock/MathBlock";
 
@@ -59,14 +59,19 @@ export const TextBlockComponent: FunctionComponent<TextBlockComponentProps> = ({
 
   const refContainer = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    // refContainer.current?.focus();
+  }, [])
+
   return (
     <div
       className={" whitespace-pre-wrap select-text min-h-[1.5em]"}
       contentEditable={editable}
-      placeholder="Tapez"
+      onInput={event => {
+        console.log(event);
+      }}
       onBlur={() => {
         parent.content = refContainer.current?.textContent ?? ""
-        console.log(refContainer.current?.textContent);
         update();
         setIsCurrentlyEdited(false);
 

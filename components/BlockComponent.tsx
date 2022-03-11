@@ -60,7 +60,10 @@ export const BlockComponent: FunctionComponent<BlockComponentProps> = ({
     }
   };
 
-  const addNewElementBelow = (beforeIndex: number, elementType: Block["__typename"]) => {
+  const addNewElementBelow = (
+    beforeIndex: number,
+    elementType: Block["__typename"]
+  ) => {
     let newBlock: Block;
     switch (elementType) {
       case "ExempleBlock":
@@ -141,17 +144,6 @@ export const BlockComponent: FunctionComponent<BlockComponentProps> = ({
                   addNewElementBelow(index, elementType)
                 }
               />
-              {/*<div className="relative flex justify-center items-center flex-col">*/}
-              {/*  <button*/}
-              {/*    onClick={() => addNewElementBelow(index)}*/}
-              {/*    className="w-full flex items-center space-x-4 hover:max-h-6 hover:opacity-100 max-h-2 overflow-hidden opacity-0 transition-all mt-2"*/}
-              {/*  >*/}
-              {/*    <span className="flex-grow border-t-2" />*/}
-              {/*    <span>Add a new element below</span>*/}
-              {/*    <span className="flex-grow border-t-2" />*/}
-              {/*  </button>*/}
-              {/*  <SelectBlockMenu/>*/}
-              {/*</div>*/}
             </div>
           ))}
       </div>
