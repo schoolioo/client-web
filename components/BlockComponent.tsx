@@ -21,7 +21,7 @@ export const BlockComponent: FunctionComponent<BlockComponentProps> = ({
     switch (block.__typename) {
       case "SectionBlock":
         return (
-          <section className="ml-4">
+          <section className="ml-4 border-l border-primary border-l-4 pl-4">
             <Heading level={level > 4 ? 4 : level} prefix="A">
               {block.title}
             </Heading>
