@@ -33,6 +33,19 @@ const Heading: FunctionComponent<HeadingProps> = ({
 
   const classNames = "my-3 font-bold text-primary flex items-center";
   switch (level) {
+    case 1:
+      return (
+        <h1 className={`text-3xl ${classNames}`}>
+          {(prefix?.length ?? 0) > 0 && (
+            <HeadingPrefix level={level} prefix={prefix} />
+          )}
+          <HeadingText
+            setTitleData={setTitleData}
+            text={titleData}
+            editable={editable}
+          />
+        </h1>
+      );
     case 2:
       return (
         <h2 className={`text-2xl ${classNames}`}>
@@ -59,7 +72,7 @@ const Heading: FunctionComponent<HeadingProps> = ({
           />
         </h3>
       );
-    case 4:
+    default:
       return (
         <h4 className={`text-lg ${classNames}`}>
           {(prefix?.length ?? 0) > 0 && (
@@ -71,19 +84,6 @@ const Heading: FunctionComponent<HeadingProps> = ({
             editable={editable}
           />
         </h4>
-      );
-    default:
-      return (
-        <h1 className={`text-3xl ${classNames}`}>
-          {(prefix?.length ?? 0) > 0 && (
-            <HeadingPrefix level={level} prefix={prefix} />
-          )}
-          <HeadingText
-            setTitleData={setTitleData}
-            text={titleData}
-            editable={editable}
-          />
-        </h1>
       );
   }
 };

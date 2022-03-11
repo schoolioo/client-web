@@ -13,7 +13,7 @@ const Editor: NextPage = () => {
 
   return (
     <div>
-      <BlockComponent block={ block }/>
+      <BlockComponent level={1} block={ block }/>
     </div>
   );
 };
