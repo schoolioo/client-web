@@ -30,8 +30,8 @@ Block.args = {
 const TemplateInline: Story<MathBlockProps> = (args) => (
   <div>
     On appelle fonction polynôme de degré 2 :<MathBlock {...args} />. Une
-    fonction polynôme de degré 2 s'appelle également fonction trinôme du second
-    degré ou par abus de langage "trinôme".
+    fonction polynôme de degré 2 s&apos;appelle également fonction trinôme du second
+    degré ou par abus de langage &lsquo;trinôme&lsquo;.
   </div>
 );
 export const Inline = TemplateInline.bind({});

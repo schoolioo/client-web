@@ -21,9 +21,9 @@ function regexToElement(
 
   for (let i = 0; i < data.length; i++) {
     if (i % 2 == 0) {
-      result = [...result, <span>{callBack(data[i])}</span>];
+      result = [...result, <span key={`${i}${data[i]}`}>{callBack(data[i])}</span>];
     } else {
-      result = [...result, React.createElement(Element, {}, callBack(data[i]))];
+      result = [...result, React.createElement(Element, {key: `${i}${data[i]}`}, callBack(data[i]))];
     }
   }
   return result;
@@ -85,19 +85,4 @@ export const TextBlockComponent: FunctionComponent<TextBlockComponentProps> = ({
       {markdownIFy(textContent)}
     </div>
   );
-
-  // <div
-  //   contentEditable={editable}
-  //   className={ " whitespace-pre-wrap select-text min-h-[1.5em]" }
-  //   onInput={ () => {
-  //     setTextContent(refContainer.current?.textContent ?? "")
-  //   } }
-  //   onBlur={ () => {
-  //     setIsCurrentlyEdited(false);
-  //   } }
-  //   ref={ refContainer }
-  //   onFocus={ () => setIsCurrentlyEdited(true) }
-  // >
-  //   { editable && isCurrentlyEdited ? textContent : markdownIFy(textContent) }
-  // </div>
 };

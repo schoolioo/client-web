@@ -3,8 +3,6 @@ import InformationIcon from "../icons/InformationIcon";
 import ThinkingIcon from "../icons/ThinkingIcon";
 import AbacusIcon from "../icons/AbacusIcon";
 import { Block } from "../../url-generated-api";
-import getBlock from "../../lib/GetBlock";
-import { NewSectionButton } from "../NewSectionButton/NewSectionButton";
 
 export type CourseBlockProps = {
   children?: React.ReactNode;
@@ -115,8 +113,6 @@ const CourseBlock: FunctionComponent<CourseBlockProps> = ({
         }`}
       >
         {children}
-        {blocks?.map((block) => getBlock(block, editable, blocksWhereToAdd))}
-        {editable && <NewSectionButton blocksWhereToAdd={blocksWhereToAdd} />}
       </main>
     </div>
   );

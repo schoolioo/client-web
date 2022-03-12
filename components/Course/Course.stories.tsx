@@ -17,9 +17,7 @@ export default {
 
 const Template: Story<CourseProps> = (args) => (
   <Course {...args}>
-    <Heading level={1} prefix="1">
-      Résolution d'une équation du second degré
-    </Heading>
+    <Heading title="Résolution d&apos;une équation du second degré" id="b416ad36-b4d1-4477-b56e-6ffc39fe4159" level={ 1 } prefix="1"/>
     <CourseBlock type={CourseBlockType.Definition}>
       Une équation du second degré est une équation de la forme :
       <MathBlock latex="ax^2 + bx + c = 0" />
@@ -27,16 +25,16 @@ const Template: Story<CourseProps> = (args) => (
       <MathBlock latex="b" inline /> est un nombre reel et{" "}
       <MathBlock latex="c" inline /> est un nombre reel.
       <CourseBlock type={CourseBlockType.Example} expandable>
-        L'équation <MathBlock latex="x^2 - 2x + 1 = 0" inline /> est un exemple
-        de l'équation du second degré.
+        L&apos;équation <MathBlock latex="x^2 - 2x + 1 = 0" inline /> est un exemple
+        de l&apos;équation du second degré.
       </CourseBlock>
     </CourseBlock>
     <CourseBlock type={CourseBlockType.Definition}>
-      On appelle discriminant du trinôme de l'équation du second degré noté{" "}
+      On appelle discriminant du trinôme de l&apos;équation du second degré noté{" "}
       <MathBlock inline latex="\Delta" /> :
       <MathBlock latex="\Delta = b^2 - 4ac" />
       <CourseBlock type={CourseBlockType.Example} expandable>
-        Le discrimant de l'équation <MathBlock inline latex="3x^{2}-6x-2=0" />{" "}
+        Le discrimant de l&apos;équation <MathBlock inline latex="3x^{2}-6x-2=0" />{" "}
         est{" "}
         <MathBlock
           inline
@@ -46,20 +44,20 @@ const Template: Story<CourseProps> = (args) => (
       </CourseBlock>
     </CourseBlock>
     <CourseBlock type={CourseBlockType.Theorem}>
-      Soit <MathBlock inline latex="\Delta" /> le discriminant de l'équation du
+      Soit <MathBlock inline latex="\Delta" /> le discriminant de l&apos;équation du
       second degré.
       <ul>
         <li>
-          Si <MathBlock inline latex="\Delta" /> est négatif, l'équation du
-          second degré n'a pas de solution.
+          Si <MathBlock inline latex="\Delta" /> est négatif, l&apos;équation du
+          second degré n&apos;a pas de solution.
         </li>
         <li>
-          Si <MathBlock inline latex="\Delta" /> est nul, l'équation du second
+          Si <MathBlock inline latex="\Delta" /> est nul, l&apos;équation du second
           degré a une solution unique.{" "}
           <MathBlock latex="x_0 = - \frac{b}{2a}" inline />
         </li>
         <li>
-          Si <MathBlock inline latex="\Delta" /> est positif, l'équation du
+          Si <MathBlock inline latex="\Delta" /> est positif, l&apos;équation du
           second degré a deux solutions.{" "}
           <MathBlock inline latex="x_1 = \frac{-b-\sqrt{\Delta}}{2a}" />{" "}
           <MathBlock inline latex="x_2 = \frac{-b+\sqrt{\Delta}}{2a}" />

@@ -20,7 +20,7 @@ export const Default = Template.bind({});
 const MultipleAnswersTemplate: Story<QuizButtonProps> = (args) => (
   <>
     <h1 className="text-3xl font-bold mb-10 text-gray-700">
-      Quelle est la forme d'une équation du second degré ?
+      Quelle est la forme d&apos;une équation du second degré ?
     </h1>
     <ul className="space-y-4">
       <QuizButton avatar="A">
