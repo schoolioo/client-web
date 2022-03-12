@@ -12,11 +12,17 @@ const Editor: NextPage = () => {
   });
 
   return (
-    <div>
-      <BlockComponent level={1} block={ block }/>
+    <div className="max-w-5xl m-auto">
+      <BlockComponent
+        onChange={(block) => {
+          console.log(block);
+          setBlock(block);
+        }}
+        level={1}
+        block={block}
+      />
     </div>
   );
 };
-
 
 export default Editor;

@@ -1,14 +1,17 @@
 import React, { FunctionComponent, useState } from "react";
+import { SectionBlock } from "../../url-generated-api";
 
 const HeadingText: FunctionComponent<{
   editable: boolean;
   text: string;
-  setTitleData: (title: string) => void;
-}> = ({ editable, text, setTitleData }) => {
+  onChange: (text: string) => void;
+}> = ({ editable, text, onChange }) => {
   return editable ? (
     <input
       value={text}
-      onChange={(event) => setTitleData(event.target.value)}
+      onChange={(event) => {
+        onChange(event.target.value);
+      }}
       className="font-bold w-full outline-0 focus:border-b-2  border-primary bg-transparent"
       type="text"
     />
@@ -22,14 +25,30 @@ export type HeadingProps = {
   level?: number;
   editable?: boolean;
   title: string;
+  onChange?: (block: SectionBlock) => void;
+  id: string;
 };
 const Heading: FunctionComponent<HeadingProps> = ({
   prefix,
   level = 1,
-  editable = true,
+  editable = false,
   title = "",
+  onChange,
+  id,
 }) => {
   const [titleData, setTitleData] = useState(title);
+
+  const onChangeInner = (text: string) => {
+    setTitleData(text);
+    if (onChange) {
+      onChange({
+        title: text,
+        id,
+        __typename: "SectionBlock",
+        blocks: [],
+      });
+    }
+  };
 
   const classNames = "my-3 font-bold text-primary flex items-center";
   switch (level) {
@@ -40,7 +59,7 @@ const Heading: FunctionComponent<HeadingProps> = ({
             <HeadingPrefix level={level} prefix={prefix} />
           )}
           <HeadingText
-            setTitleData={setTitleData}
+            onChange={onChangeInner}
             text={titleData}
             editable={editable}
           />
@@ -53,7 +72,7 @@ const Heading: FunctionComponent<HeadingProps> = ({
             <HeadingPrefix level={level} prefix={prefix} />
           )}
           <HeadingText
-            setTitleData={setTitleData}
+            onChange={onChangeInner}
             text={titleData}
             editable={editable}
           />
@@ -66,7 +85,7 @@ const Heading: FunctionComponent<HeadingProps> = ({
             <HeadingPrefix level={level} prefix={prefix} />
           )}
           <HeadingText
-            setTitleData={setTitleData}
+            onChange={onChangeInner}
             text={titleData}
             editable={editable}
           />
@@ -79,7 +98,7 @@ const Heading: FunctionComponent<HeadingProps> = ({
             <HeadingPrefix level={level} prefix={prefix} />
           )}
           <HeadingText
-            setTitleData={setTitleData}
+            onChange={onChangeInner}
             text={titleData}
             editable={editable}
           />

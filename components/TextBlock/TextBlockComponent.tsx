@@ -1,5 +1,5 @@
-import React, { FunctionComponent, ReactNode, useRef, useState } from "react";
-import { TextBlock } from "../../url-generated-api";
+import React, { FunctionComponent, ReactNode, useState } from "react";
+import { Block, TextBlock } from "../../url-generated-api";
 import { InlineMathBlock } from "../MathBlock/MathBlock";
 
 export const SpanBold: FunctionComponent = ({ children }) => {
@@ -42,20 +42,31 @@ function markdownIFy(text: string): ReactNode {
 export type TextBlockComponentProps = {
   readonly content: TextBlock["content"];
   readonly editable?: boolean;
+  readonly onUpdate?: (block: Block) => void;
+  readonly id: string;
 };
 export const TextBlockComponent: FunctionComponent<TextBlockComponentProps> = ({
   content,
   editable,
+  onUpdate = () => {},
+  id,
 }) => {
   const [isCurrentlyEdited, setIsCurrentlyEdited] = useState(false);
 
   const [textContent, setTextContent] = useState(content);
 
-  const refContainer = useRef<HTMLDivElement>(null);
+  const updateContent = (content: string) => {
+    setTextContent(content);
+    onUpdate({
+      __typename: "TextBlock",
+      id,
+      content,
+    });
+  };
 
   return isCurrentlyEdited ? (
     <input
-      onChange={(event) => setTextContent(event.target.value)}
+      onChange={(event) => updateContent(event.target.value)}
       autoFocus
       onBlur={() => setIsCurrentlyEdited(false)}
       type="text"

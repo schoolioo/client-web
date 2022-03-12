@@ -5,16 +5,24 @@ import { TextBlockComponent } from "./TextBlock/TextBlockComponent";
 import Heading from "./Heading/Heading";
 import { AddBlockButton } from "./AddBlockButton";
 
-const GetBlock: FunctionComponent<{ block: Block; level: number }> = ({
-  children,
-  block,
-  level = 0,
-}) => {
+const GetBlock: FunctionComponent<{
+  block: Block;
+  level: number;
+  onChange: (block: Block) => void;
+  editable: boolean;
+}> = ({ children, block, level = 0, onChange, editable }) => {
   switch (block.__typename) {
     case "SectionBlock":
       return (
         <section className="ml-4 border-l border-primary border-l-4 pl-4">
-          <Heading level={level} title={block.title} prefix="A" />
+          <Heading
+            onChange={onChange}
+            id={block.id}
+            level={level}
+            title={block.title}
+            editable={editable}
+            prefix="A"
+          />
           {children}
         </section>
       );
@@ -35,7 +43,14 @@ const GetBlock: FunctionComponent<{ block: Block; level: number }> = ({
         <CourseBlock type={CourseBlockType.Comment}>{children}</CourseBlock>
       );
     case "TextBlock":
-      return <TextBlockComponent editable content={block.content} />;
+      return (
+        <TextBlockComponent
+          id={block.id}
+          onUpdate={onChange}
+          editable={editable}
+          content={block.content}
+        />
+      );
     default:
       return <>{children}</>;
   }
@@ -44,10 +59,14 @@ const GetBlock: FunctionComponent<{ block: Block; level: number }> = ({
 export type BlockComponentProps = {
   block: Block;
   level: number;
+  onChange?: (block: Block) => void;
+  editable?: boolean;
 };
 export const BlockComponent: FunctionComponent<BlockComponentProps> = ({
   block,
   level,
+  onChange = () => {},
+  editable = false,
 }) => {
   const addNewElementBelow = (
     elementType: Block["__typename"],
@@ -57,14 +76,14 @@ export const BlockComponent: FunctionComponent<BlockComponentProps> = ({
     switch (elementType) {
       case "ExempleBlock":
         newBlock = {
-          id: Math.random().toFixed(10),
+          id: uuidv4(),
           blocks: [],
           __typename: "ExempleBlock",
         };
         break;
       case "SectionBlock":
         newBlock = {
-          id: Math.random().toFixed(10),
+          id: uuidv4(),
           blocks: [],
           title: "Nouveau titre",
           __typename: "SectionBlock",
@@ -72,35 +91,35 @@ export const BlockComponent: FunctionComponent<BlockComponentProps> = ({
         break;
       case "TextBlock":
         newBlock = {
-          id: Math.random().toFixed(10),
+          id: uuidv4(),
           content: "😁 Votre texte ici...",
           __typename: "TextBlock",
         };
         break;
       case "TheoremBlock":
         newBlock = {
-          id: Math.random().toFixed(10),
+          id: uuidv4(),
           blocks: [],
           __typename: "TheoremBlock",
         };
         break;
       case "DefinitionBlock":
         newBlock = {
-          id: Math.random().toFixed(10),
+          id: uuidv4(),
           blocks: [],
           __typename: "DefinitionBlock",
         };
         break;
       case "CommentBlock":
         newBlock = {
-          id: Math.random().toFixed(10),
+          id: uuidv4(),
           blocks: [],
           __typename: "CommentBlock",
         };
         break;
       default:
         newBlock = {
-          id: Math.random().toFixed(10),
+          id: uuidv4(),
           blocks: [],
           __typename: "ExempleBlock",
         };
@@ -111,38 +130,73 @@ export const BlockComponent: FunctionComponent<BlockComponentProps> = ({
     const newBlockChildren = [...blockChildren];
     newBlockChildren.splice(index + 1, 0, newBlock);
     setBlockChildren(newBlockChildren);
+    childrenAdded(newBlockChildren);
   };
 
   // @ts-ignore
   const [blockChildren, setBlockChildren] = useState<Block[]>(
-    block.blocks ?? []
+    "blocks" in block ? block.blocks : []
   );
+
+  const childrenAdded = (children: Block[]) => {
+    const newBlock = {
+      ...block,
+      blocks: children,
+    };
+    onChange(newBlock);
+  };
+
+  const mainBlockUpdate = (block: Block) => {
+    const newBlock = {
+      ...block,
+      blocks: blockChildren,
+    };
+    onChange(newBlock);
+  };
+
+  const childUpdate = (childBlock: Block, index: number) => {
+    // update block in blockChildren
+    const newBlockChildren = [...blockChildren];
+    newBlockChildren[index] = childBlock;
+    setBlockChildren(newBlockChildren);
+    childrenAdded(newBlockChildren);
+  };
 
   return (
     <>
-      <GetBlock level={level} block={block}>
-        <section>
+      <GetBlock
+        editable={editable}
+        onChange={mainBlockUpdate}
+        level={level}
+        block={block}
+      >
+        <section className={editable ? "" : "space-y-4"}>
           {blockChildren.map((blockChild, index) => (
-            <>
-              <AddBlockButton
-                onClick={(elementType: Block["__typename"]) =>
-                  addNewElementBelow(elementType, index - 1)
-                }
-              />
+            <div key={blockChild.id}>
+              {editable && (
+                <AddBlockButton
+                  onClick={(elementType: Block["__typename"]) =>
+                    addNewElementBelow(elementType, index - 1)
+                  }
+                />
+              )}
+
               <BlockComponent
+                editable={editable}
+                onChange={(block1) => childUpdate(block1, index)}
                 level={level + 1}
-                key={blockChild.id}
                 block={blockChild}
               />
-
-            </>
+            </div>
           ))}
         </section>
-        <AddBlockButton
-          onClick={(elementType: Block["__typename"]) =>
-            addNewElementBelow(elementType, blockChildren.length + 1)
-          }
-        />
+        {editable && (
+          <AddBlockButton
+            onClick={(elementType: Block["__typename"]) =>
+              addNewElementBelow(elementType, blockChildren.length + 1)
+            }
+          />
+        )}
       </GetBlock>
     </>
   );
