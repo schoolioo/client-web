@@ -12,7 +12,7 @@ export type CourseBlockProps = {
   expandable?: boolean;
   blocks?: Block[];
   editable?: boolean;
-  blocksWhereToAdd?: Block[]
+  blocksWhereToAdd?: Block[];
 };
 
 export enum CourseBlockType {
@@ -27,13 +27,13 @@ type ExpandIconProps = {
 };
 
 const ExpandIcon: FunctionComponent<ExpandIconProps> = ({
-                                                          expanded = false,
-                                                        }) => {
+  expanded = false,
+}) => {
   return (
     <svg
-      className={ `h-5 w-5 transition-transform ease-in-out ${
+      className={`h-5 w-5 transition-transform ease-in-out ${
         expanded ? "transform rotate-180" : ""
-      }` }
+      }`}
       viewBox="0 0 24 24"
     >
       <path
@@ -45,13 +45,13 @@ const ExpandIcon: FunctionComponent<ExpandIconProps> = ({
 };
 
 const CourseBlock: FunctionComponent<CourseBlockProps> = ({
-                                                            children,
-                                                            type,
-                                                            expandable = false,
-                                                            blocks,
-                                                            editable = false,
-                                                            blocksWhereToAdd = []
-                                                          }) => {
+  children,
+  type,
+  expandable = false,
+  blocks,
+  editable = false,
+  blocksWhereToAdd = [],
+}) => {
   const getTypeData = () => {
     switch (type) {
       case CourseBlockType.Comment:
@@ -59,7 +59,7 @@ const CourseBlock: FunctionComponent<CourseBlockProps> = ({
           className: "bg-blue-100",
           title: (
             <div className="text-blue-600 flex items-center">
-              <ThinkingIcon/> Remarque
+              <ThinkingIcon /> Remarque
             </div>
           ),
         };
@@ -73,7 +73,7 @@ const CourseBlock: FunctionComponent<CourseBlockProps> = ({
           className: "bg-red-100",
           title: (
             <div className="text-red-600 flex items-center">
-              <InformationIcon/>
+              <InformationIcon />
               Définition
             </div>
           ),
@@ -83,7 +83,7 @@ const CourseBlock: FunctionComponent<CourseBlockProps> = ({
           className: "bg-yellow-100",
           title: (
             <div className="text-yellow-600 flex items-center">
-              <AbacusIcon/> Théorème
+              <AbacusIcon /> Théorème
             </div>
           ),
         };
@@ -94,29 +94,29 @@ const CourseBlock: FunctionComponent<CourseBlockProps> = ({
 
   return (
     <div
-      className={ `rounded-xl font-body space-y-2 select-none ${
+      className={`rounded-xl font-body space-y-2 select-none ${
         getTypeData().className
-      }` }
+      }`}
     >
       <header
-        onClick={ () => setExpand(!expand) }
-        className={ `rounded-xl font-bold flex justify-between p-5 ${
+        onClick={() => setExpand(!expand)}
+        className={`rounded-xl font-bold flex justify-between p-5 ${
           expandable
             ? "cursor-pointer hover:bg-black hover:bg-opacity-5 transition-colors ease-in-out"
             : ""
-        }` }
+        }`}
       >
-        { getTypeData().title }
-        { expandable && <ExpandIcon expanded={ expand }/> }
+        {getTypeData().title}
+        {expandable && <ExpandIcon expanded={expand} />}
       </header>
       <main
-        className={ `text-gray-700 space-y-4 px-5 pb-5 ${
+        className={`text-gray-700 space-y-4 px-5 pb-5 ${
           !expandable || expand ? "" : "hidden"
-        }` }
+        }`}
       >
-        { children }
-        { blocks?.map((block) => getBlock(block, editable, blocksWhereToAdd)) }
-        { editable && <NewSectionButton blocksWhereToAdd={blocksWhereToAdd}/> }
+        {children}
+        {blocks?.map((block) => getBlock(block, editable, blocksWhereToAdd))}
+        {editable && <NewSectionButton blocksWhereToAdd={blocksWhereToAdd} />}
       </main>
     </div>
   );

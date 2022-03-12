@@ -12,22 +12,17 @@ const Editor: NextPage = () => {
   });
 
   return (
-    <div>
+    <div className="max-w-5xl m-auto">
       <BlockComponent
-        update={ () => setBlock({ ...block }) }
-        block={ block }
-        editable
+        onChange={(block) => {
+          console.log(block);
+          setBlock(block);
+        }}
+        level={1}
+        block={block}
       />
-      {/*<button*/}
-      {/*  onClick={ () => {*/}
-      {/*    console.log(JSON.stringify(block));*/}
-      {/*  } }*/}
-      {/*>*/}
-      {/*  Save*/}
-      {/*</button>*/}
     </div>
   );
 };
-
 
 export default Editor;

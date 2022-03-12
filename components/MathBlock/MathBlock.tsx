@@ -38,13 +38,11 @@ const MathBlock: FunctionComponent<MathBlockProps> = ({
 
 export default MathBlock;
 
-
 export type InlineMathBlockProps = {
-  children: string
+  children: string;
 };
-export const InlineMathBlock: FunctionComponent<InlineMathBlockProps> = ({children}) => {
-  return (
-    <MathBlock inline latex={children}/>
-  );
+export const InlineMathBlock: FunctionComponent<InlineMathBlockProps> = ({
+  children,
+}) => {
+  return <MathBlock inline latex={children} />;
 };
-
