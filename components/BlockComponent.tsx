@@ -14,7 +14,9 @@ const GetBlock: FunctionComponent<{
   switch (block.__typename) {
     case "SectionBlock":
       return (
-        <section className="ml-4 border-l border-primary border-l-4 pl-4">
+        <section
+          className={`${editable ? "border-l-4 border-primary pl-4 ml-4" : ""}`}
+        >
           <Heading
             onChange={onChange}
             id={block.id}
@@ -58,13 +60,13 @@ const GetBlock: FunctionComponent<{
 
 export type BlockComponentProps = {
   block: Block;
-  level: number;
+  level?: number;
   onChange?: (block: Block) => void;
   editable?: boolean;
 };
 export const BlockComponent: FunctionComponent<BlockComponentProps> = ({
   block,
-  level,
+  level = 1,
   onChange = () => {},
   editable = false,
 }) => {
