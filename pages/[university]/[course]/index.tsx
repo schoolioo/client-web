@@ -33,7 +33,7 @@ const CourseIndexPage = () => {
             <circle cx="32.6334" cy="39.426" r="4.14791" />
           </svg>
           <h1 className="font-bold text-3xl">
-
+            Matière
           </h1>
           <div></div>
         </div>

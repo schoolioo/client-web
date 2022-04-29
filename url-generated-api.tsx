@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import * as Urql from 'urql';
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -83,16 +83,3 @@ export type GetCourseQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetCourseQuery = { __typename?: 'Query', getCourse?: { __typename?: 'SectionBlock', title: string } | null | undefined };
-
-
-export const GetCourseDocument = gql`
-    query GetCourse {
-  getCourse {
-    title
-  }
-}
-    `;
-
-export function useGetCourseQuery(options: Omit<Urql.UseQueryArgs<GetCourseQueryVariables>, 'query'> = {}) {
-  return Urql.useQuery<GetCourseQuery>({ query: GetCourseDocument, ...options });
-};
