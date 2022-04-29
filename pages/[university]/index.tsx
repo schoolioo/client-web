@@ -19,6 +19,13 @@ const UniversityIndexPage = () => {
     fetcher
   );
 
+  const { data: universityData } = useSWR<{id: number, name: string}>(
+    `http://schooliu.ddns.net:3000/universities/${router.query.university}`,
+    fetcher
+  );
+
+
+
 
 
   const addNewSubject = async ({ name }: { name: string }) => {
@@ -54,7 +61,7 @@ const UniversityIndexPage = () => {
             <circle cx="72.9274" cy="39.426" r="4.14791" />
             <circle cx="32.6334" cy="39.426" r="4.14791" />
           </svg>
-          <h1 className="font-bold text-3xl">ESIR</h1>
+          <h1 className="font-bold text-3xl">{universityData && universityData.name}</h1>
           <div></div>
         </div>
       </nav>
