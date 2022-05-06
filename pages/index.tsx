@@ -49,7 +49,7 @@ const Home: NextPage = () => {
       <div className="p-4 grid grid-cols-2 gap-4">
         {data &&
           data.map((value: { id: number; name: string }) => (
-            <Link href={"/" + value.name} key={value.id}>
+            <Link href={"/" + value.id} key={value.id}>
               <a>
                 <UniversityButton name={value.name} />
               </a>

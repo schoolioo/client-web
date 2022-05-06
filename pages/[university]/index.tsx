@@ -68,7 +68,7 @@ const UniversityIndexPage = () => {
       <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
         {data &&
           data.map((el: any) => (
-            <Link key={el.id} href={`/${router.query.university}/${el.id}`}>
+            <Link key={el.id} href={`/${router.query.university}/${el.slug}`}>
               <a>
                 <SubjectButton subject={el.name} progress={100} />
               </a>
