@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import fetcher from "../../../utils/fetcher";
 import { GetStaticProps } from "next";
+import { AddLessonModal } from "../../../components/AddLessonModal";
+import { FunctionComponent } from "react";
 
 export const getServerSideProps: GetStaticProps = ({ params }) => {
   return {
@@ -9,13 +11,39 @@ export const getServerSideProps: GetStaticProps = ({ params }) => {
   };
 };
 
+export interface LessonAPIResponse {
+  name: string;
+  id: number;
+  icon: string;
+  slug: string;
+}
+
 const CourseIndexPage = () => {
   const router = useRouter();
 
-  const { data, error, mutate } = useSWR(
+  const { data, error, mutate } = useSWR<LessonAPIResponse[]>(
     `http://schooliu.ddns.net:3000/lessons/${router.query.university}/${router.query.course}`,
     fetcher
   );
+
+  const addNewLesson = async ({ name }: { name: string }) => {
+    const { university, course } = router.query;
+    console.log(university, course);
+    const res = await fetch("http://schooliu.ddns.net:3000/lessons", {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        universityId: university,
+        courseSlug: course,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!res.ok) throw new Error();
+
+    await mutate();
+  };
 
   return (
     <>
@@ -32,13 +60,47 @@ const CourseIndexPage = () => {
             <circle cx="72.9274" cy="39.426" r="4.14791" />
             <circle cx="32.6334" cy="39.426" r="4.14791" />
           </svg>
-          <h1 className="font-bold text-3xl">
-            Matière
-          </h1>
+          <h1 className="font-bold text-3xl">Matière</h1>
           <div></div>
         </div>
       </nav>
+      <div className="p-4 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+        {data &&
+          data.map((el, index) => (
+            <LessonButton
+              chapterIndex={index + 1}
+              name={el.name}
+            ></LessonButton>
+          ))}
+        <AddLessonModal onAdd={addNewLesson}></AddLessonModal>
+      </div>
     </>
+  );
+};
+
+export const LessonButton: FunctionComponent<{
+  name: string;
+  chapterIndex: number;
+}> = ({ name, chapterIndex }) => {
+  const getBgColor = () => {
+    switch (chapterIndex % 5) {
+      case 1:
+        return "bg-red-500"
+      case 2:
+        return "bg-blue-500"
+      case 3:
+        return "bg-green-500"
+      case 4:
+        return "bg-orange-500"
+      default:
+        return "bg-pink-500"
+    }
+  }
+  return (
+    <div className={ `${getBgColor()} rounded-3xl flex cursor-pointer hover:shadow-md transition ease-in-out aspect-square relative overflow-hidden flex flex-col justify-between` }>
+      <div className="p-4 top-0 w-full font-bold text-white">{name}</div>
+      <div className="bg-gray-100 w-full p-4 uppercase font-bold text-black/50">Chapitre {chapterIndex}</div>
+    </div>
   );
 };
 
