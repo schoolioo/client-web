@@ -68,7 +68,7 @@ export const AddLessonModal: FunctionComponent<AddSubjectModalProps> = ({
               as="h3"
               className="text-lg font-bold leading-6 text-gray-900"
             >
-              Ajouter une nouvelle lesson
+              Ajouter un nouveau chapitre
             </Dialog.Title>
 
             <div className="flex space-x-2">
@@ -108,7 +108,7 @@ export const AddLessonModal: FunctionComponent<AddSubjectModalProps> = ({
         onClick={openModal}
         className="p-4 rounded-3xl border-4 border-dashed border-gray-500 text-gray-500 flex items-center justify-center font-bold text-2xl"
       >
-        Ajouter une nouvelle lesson
+        Ajouter un nouveau chapitre
       </button>
     </>
   );
