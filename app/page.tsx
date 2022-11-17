@@ -11,7 +11,7 @@ export default function () {
             <Logo />
             <div>
               <Link
-                className="text-white border-white border-2 p-2 rounded-full"
+                className="text-white border-white border-2 p-2 rounded-full select-none"
                 href={"/login"}
               >
                 Se connecter
