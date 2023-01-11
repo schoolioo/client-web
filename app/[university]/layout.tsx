@@ -1,7 +1,5 @@
 import Image from "next/image";
 import { Logo } from "../logo";
-import Link from "next/link";
-import {NextPage, NextPageContext} from "next";
 
 export default function ({ children }: { children: React.ReactNode }) {
   return (
@@ -26,7 +24,7 @@ export default function ({ children }: { children: React.ReactNode }) {
 
       <div className="backdrop-blur-lg bg-white/50 p-6 rounded-xl -mt-24 space-y-6 max-w-5xl mx-auto shadow">
         <h1 className="font-bold text-3xl">Université de Rennes 1</h1>
-        <div className="grid grid-cols-3">
+        <div className="md:grid grid-cols-3 hidden">
           <div className="space-y-2">
             <h2 className="text-neutral/80 text-lg font-bold">
               🧑‍🎓 Étudiants sur Schooliu

@@ -62,7 +62,7 @@ export default function ({ params }: { params: { university: string } }) {
   return (
     <div className="space-y-4">
       <h1 className="font-bold text-3xl">📚 Matières</h1>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {subjects.map((subject) => (
           <div className="card w-full bg-base-100 shadow-xl image-full overflow-hidden">
             <Image
