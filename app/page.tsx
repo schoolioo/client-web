@@ -4,44 +4,40 @@ import { Logo } from "./logo";
 
 export default function () {
   return (
-    <div>
-      <div className="relative h-screen w-screen">
-        <nav className="absolute top-0 z-20 w-full p-4">
-          <div className="max-w-7xl m-auto flex items-center justify-between">
-            <Logo />
-            <div>
-              <Link
-                className="text-white border-white border-2 p-2 rounded-full select-none"
-                href={"/login"}
-              >
-                Se connecter
-              </Link>
-            </div>
-          </div>
-        </nav>
-
-        <div className="z-20 bottom-32 absolute p-4 w-full">
-          <div className="max-w-7xl m-auto">
-            <h1 className="text-white text-7xl font-bold border-white border-b-2 pb-10">
-              La plateforme collaborative pour tous vos cours
-            </h1>
-            <p className="text-white mt-10 text-xl">
-              Domuss credere, tanquam magnum detrius. Pol, a bene lanista,
-              castus uria! Domuss credere, tanquam magnum detrius. Pol, a bene
-              lanista, castus uria!
-            </p>
+    <div className="h-screen flex flex-col">
+      <nav className="w-full p-4">
+        <div className="p-4 m-auto flex items-center justify-between">
+          <Logo />
+          <div>
+            <Link
+              className="btn btn-primary rounded-full"
+              href={"/login"}
+            >
+              Se connecter
+            </Link>
           </div>
         </div>
-
-        <div className="bg-black/40 h-full w-full absolute z-10"></div>
-
-        <Image
-          className="object-cover"
-          fill
-          src="/brooke-cagle-g1Kr4Ozfoac-unsplash.jpg"
-          alt="School"
-        ></Image>
-      </div>
+      </nav>
+      <main className="grid grid-cols-2 flex-grow">
+        <div className="max-w-5xl m-auto flex flex-col justify-center p-4">
+          <h1 className="text-8xl font-bold border-white border-b-2 pb-10">
+            📚 La plateforme collaborative pour tous vos cours
+          </h1>
+          <p className="mt-10 text-3xl">
+            Apprendre ensemble, réussir ensemble : le site de collaboration de cours pour les étudiants, par les étudiants
+          </p>
+        </div>
+        <div className="p-4">
+          <div className="relative h-full w-full">
+            <Image
+              className="object-cover rounded-3xl"
+              fill
+              src="/brooke-cagle-g1Kr4Ozfoac-unsplash.jpg"
+              alt="School"
+            ></Image>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }

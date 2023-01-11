@@ -1,13 +1,16 @@
-import "./global.css"
+import "./global.css";
+
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html>
-      <head />
+      <head>
+        <title>Schooliu</title>
+      </head>
       <body>{children}</body>
     </html>
-  )
+  );
 }
