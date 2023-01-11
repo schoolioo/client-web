@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "schooliu-web",
   "private": true,
   "scripts": {
     "dev": "next dev",
