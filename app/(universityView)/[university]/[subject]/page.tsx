@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -92,9 +91,12 @@ export default function ({
                       <span>✅ {exercise.name}</span>
                     </div>
                     <div className="flex-none">
-                      <button className="btn btn-sm btn-ghost">
+                      <Link
+                        href={`/${params.university}/${params.subject}/exercice/${exercise.slug}`}
+                        className="btn btn-sm btn-ghost"
+                      >
                         Acceder à l'exercice
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 ))}
