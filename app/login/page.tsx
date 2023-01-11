@@ -17,9 +17,13 @@ export default function () {
           <form className="w-full space-y-4">
             <header className="text-center">
               <h1 className="font-bold text-5xl">Coucou 👋</h1>
-              <p>Pas encore de compte ? <Link className="link link-primary" href="/register">S'inscrire</Link></p>
+              <p>
+                Pas encore de compte ?{" "}
+                <Link className="link link-primary" href="/register">
+                  S'inscrire
+                </Link>
+              </p>
             </header>
-
 
             <div className="space-y-4">
               <div className="form-control w-full">

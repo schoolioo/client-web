@@ -48,7 +48,9 @@ export default function ({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      <div className="mt-6 p-6 rounded-xl max-w-5xl mx-auto bg-white shadow">{children}</div>
+      <div className="mt-6 p-6 rounded-xl max-w-5xl mx-auto bg-white shadow">
+        {children}
+      </div>
     </div>
   );
 }
