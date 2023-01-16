@@ -9,10 +9,7 @@ export default function () {
         <div className="p-4 m-auto flex items-center justify-between">
           <Logo />
           <div>
-            <Link
-              className="btn btn-primary rounded-full"
-              href={"/login"}
-            >
+            <Link className="btn btn-primary rounded-full" href={"/login"}>
               Se connecter
             </Link>
           </div>
@@ -24,7 +21,8 @@ export default function () {
             📚 La plateforme collaborative pour tous vos cours
           </h1>
           <p className="mt-10 text-3xl">
-            Apprendre ensemble, réussir ensemble : le site de collaboration de cours pour les étudiants, par les étudiants
+            Apprendre ensemble, réussir ensemble : le site de collaboration de
+            cours pour les étudiants, par les étudiants
           </p>
         </div>
         <div className="p-4">
